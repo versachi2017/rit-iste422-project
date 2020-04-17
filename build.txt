@@ -1,0 +1,17 @@
+Step 1: This command will build the classes with the java libraries into the build folder.
+  javac -cp lib/junit-4.12.jar:lib/hamcrest-core-1-3.jar -d build/ src/java/*.java
+
+Step 2: This command will build the unit test classes with the java libraries into the build folder.
+  javac -cp lib/junit-4.12.jar:lib/hamcrest-core-1-3.jar:build/ -d build/ test/java/*.java
+
+Step 3: This command will run the unit test case (EdgeConnectorTest) for functionality.
+  java -cp .:lib/junit-4.12:lib/hamcrest-core-1.3.jar:build/ org.junit.runner.JUnitCore EdgeConnectorTest
+
+#Shell script to create jar file - Deployment Exercise
+
+Step 4: This command creates the manifest file for the main class file to run.
+  echo Main-Class: RunEdgeConvert >build/tmp/jar/MANIFEST.MF
+Step 5: This command will create the jar file, add the java libraries, and the class files.
+  jar cvmf build/tmp/jar/MANIFEST.MF  EdgeConvertGUI.jar  ./lib/*.jar -C ./build .
+Step 6: This command launches the application using the jar file. 
+  java -jar  EdgeConvertGUI.jar
